@@ -14,6 +14,7 @@ namespace _2016Day12_1
         private int c;
         private int d;
         private List<string> _program;
+        private List<string> _log;
         private int _pos;
         private bool _end;
 
@@ -23,9 +24,11 @@ namespace _2016Day12_1
         /// <param name="program"></param>
         public Register(List<string> program)
         {
+            _log = new List<string>();
             this._program = program;
             this._pos = 0;
             this._end = false;
+            this.c = 1;
         }
 
         /// <summary>
@@ -33,44 +36,74 @@ namespace _2016Day12_1
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public void cpy(string x, string y)
+        public void cpy(string val, string reg)
         {
-            if (y.ToLower().Equals("a") && int.TryParse(x, out var a))
+            if (int.TryParse(val, out var value))
             {
-                this.a = a;
+                cpyValue(reg, value);
             }
-            else if(y.ToLower().Equals("a") && !int.TryParse(x, out var a1))
+            else if (!int.TryParse(val, out var v))
             {
-                var value = this.GetType().GetField(x, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
-                this.a = int.Parse(value.ToString());
+                cpyRegister(reg, val);
+            }
+        }
+
+        private void cpyValue(string reg, int value)
+        {
+            if (reg.ToLower().Equals("a"))
+            {
+                this.a = value;
+            }
+            if (reg.ToLower().Equals("b"))
+            {
+                this.b = value;
+            }
+            if (reg.ToLower().Equals("c"))
+            {
+                this.c = value;
+            }
+            if (reg.ToLower().Equals("d"))
+            {
+                this.d = value;
+            }
+        }
+
+        private void cpyRegister(string reg, string value)
+        {
+            int val = -999;
+
+            if (value.ToLower().Equals("a"))
+            {
+                val = this.a;
+            }
+            if (value.ToLower().Equals("b"))
+            {
+                val = this.b;
+            }
+            if (value.ToLower().Equals("c"))
+            {
+                val = this.c;
+            }
+            if (value.ToLower().Equals("d"))
+            {
+                val = this.d;
             }
 
-            if (y.ToLower().Equals("b") && int.TryParse(x, out var b))
+            if (reg.ToLower().Equals("a"))
             {
-                this.b = b;
+                this.a = val;
             }
-            else if (y.ToLower().Equals("b") && !int.TryParse(x, out var b1))
+            if (reg.ToLower().Equals("b"))
             {
-                var value = this.GetType().GetField(x, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
-                this.b = int.Parse(value.ToString());
+                this.b = val;
             }
-            if (y.ToLower().Equals("c") && int.TryParse(x, out var c))
+            if (reg.ToLower().Equals("c"))
             {
-                this.c = c;
+                this.c = val;
             }
-            else if (y.ToLower().Equals("c") && !int.TryParse(x, out var c1))
+            if (reg.ToLower().Equals("d"))
             {
-                var value = this.GetType().GetField(x, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
-                this.c = int.Parse(value.ToString());
-            }
-            if (y.ToLower().Equals("d") && int.TryParse(x, out var d))
-            {
-                this.d = d;
-            }
-            else if (y.ToLower().Equals("d") && !int.TryParse(x, out var d1))
-            {
-                var value = this.GetType().GetField(x, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
-                this.d = int.Parse(value.ToString());
+                this.d = val;
             }
         }
 
@@ -131,10 +164,19 @@ namespace _2016Day12_1
         /// <param name="y"></param>
         public void jnz(string x, int y)
         {
+            if (int.TryParse(x, out var value))
+            {
+                if (value != 0)
+                {
+
+                }
+            }
+
             if (x.ToLower().Equals("a"))
             {
                 if (a == 0)
                 {
+                    nxt();
                     return;
                 }
             }
@@ -142,6 +184,7 @@ namespace _2016Day12_1
             {
                 if (b == 0)
                 {
+                    nxt();
                     return;
                 }
             }
@@ -149,6 +192,7 @@ namespace _2016Day12_1
             {
                 if (c == 0)
                 {
+                    nxt();
                     return;
                 }
             }
@@ -156,6 +200,7 @@ namespace _2016Day12_1
             {
                 if (d == 0)
                 {
+                    nxt();
                     return;
                 }
             }
@@ -170,6 +215,11 @@ namespace _2016Day12_1
 
         public string inst()
         {
+            if (_pos >= 23)
+            {
+                string stop = null;
+            }
+            _log.Add(_program[_pos]);
             return _program[_pos];
         }
 
@@ -181,6 +231,11 @@ namespace _2016Day12_1
             }
 
             _pos++;
+        }
+
+        public int ProgramCount()
+        {
+            return _program.Count;
         }
 
         public int position()
