@@ -27,8 +27,6 @@ namespace _2016Day12_1
                 {
                     r.inc(str[1]);
                 }
-
-
                 if (str[0].Equals("dec"))
                 {
                     r.dec(str[1]);
