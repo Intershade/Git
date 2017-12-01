@@ -12,40 +12,12 @@ namespace _2016Day12_1
     {
         static void Main(string[] args)
         {
-            List<string> prg = File.ReadAllLines(@"C:\VS\12.txt").ToList();
-            Register r = new Register(prg);
+            Day12 d12 = new Day12();
+            Day13 d13 = new Day13();
 
-            do
-            {
-                if (r.position() == r.ProgramCount())
-                {
-                    break;
-                }
-                string[] str = r.inst().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-                if (str[0].Equals("cpy"))
-                {
-                    r.cpy(str[1], str[2]);
-                    r.nxt();
-                }
-                if (str[0].Equals("inc"))
-                {
-                    r.inc(str[1]);
-                    r.nxt();
-                }
-                if (str[0].Equals("dec"))
-                {
-                    r.dec(str[1]);
-                    r.nxt();
-                }
-                if (str[0].Equals("jnz"))
-                {
-                    r.jnz(str[1], Int32.Parse(str[2]));
-                }
 
-            } while (!r.end());
-
-            int result = r.GetValueFromRegister("a");
+            d13.Run();
         }
     }
 }

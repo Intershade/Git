@@ -28,7 +28,7 @@ namespace _2016Day12_1
             this._program = program;
             this._pos = 0;
             this._end = false;
-            this.c = 1;
+            this.c = 0;
         }
 
         /// <summary>
