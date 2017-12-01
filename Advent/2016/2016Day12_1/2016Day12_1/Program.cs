@@ -14,10 +14,11 @@ namespace _2016Day12_1
         {
             Day12 d12 = new Day12();
             Day13 d13 = new Day13();
+            Day24cs d24 = new Day24cs();
 
 
 
-            d13.Run();
+            d24.Run();
         }
     }
 }
