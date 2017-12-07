@@ -22,8 +22,17 @@ namespace AdventOfCode
 
         private void PuzzelOne()
         {
-            //string[] input = File.ReadAllLines(@"C:\VS\5.txt");
-            string input = File.ReadAllText(@"C:\VS\7.txt");
+            List<string> input = File.ReadAllLines(@"C:\VS\5.txt").ToList();
+            //string input = File.ReadAllText(@"C:\VS\7.txt");
+
+            //List<string> topPrg = new List<string>();
+            string topPrg = null;
+
+            string xgudb = input.Find(x => x.Contains("xgudb ("));
+            string fucsb = input.Find(x => x.Contains("fucsb ("));
+            string rsalq = input.Find(x => x.Contains("rsalq ("));
+            string xjllex = input.Find(x => x.Contains("xjllex ("));
+            string splbrdu = input.Find(x => x.Contains("splbrdu ("));
         }
 
         private void PuzzelTwo()
