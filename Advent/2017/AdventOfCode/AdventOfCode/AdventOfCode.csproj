@@ -49,14 +49,14 @@
     <Compile Include="Day5.cs" />
     <Compile Include="Day6.cs" />
     <Compile Include="Day7.cs" />
+    <Compile Include="Day8.cs" />
+    <Compile Include="Helpers\GetModifier.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
